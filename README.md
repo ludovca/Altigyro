@@ -38,6 +38,15 @@ Dès que l'altimètre détecte une stabilité verticale prolongée (> 5s), l'ord
 
 Le format généré par le code en C respecte scrupuleusement la structure suivante :
 
+Chaque ligne du tableau des données brutes suit la structure suivante :
+`[t_ms, P_Pa, Temp_C, Alt_vert, A_x, A_y, A_z, G_x, G_y, G_z]`
+
+* **P_Pa** : Pression atmosphérique en Pascals (mesure brute du BMP280).
+* **Temp_C** : Température ambiante en degrés Celsius.
+* **Alt_vert** : Altitude relative calculée (mètres).
+* **A_xyz** : Accélérations linéaires sur les 3 axes ($\text{m/s}^2$).
+* **G_xyz** : Vitesses de rotation angulaire sur les 3 axes (degrés/seconde).
+
 ```json
 {
   "infos_vol": {
