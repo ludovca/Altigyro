@@ -44,6 +44,7 @@ Le format généré par le code en C respecte scrupuleusement la structure suiva
     "statut": "Termine",
     "frequence_hz": 50,
     "t0_decollage_ms": 25400
+    "tf_atterrissage_ms": 35000
   },
   "resume_analyse": {
     "altitude_max_m": 222.2,
