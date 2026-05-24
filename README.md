@@ -1,6 +1,6 @@
 # Altigyro Ordinateur de Bord Enregistreur pour Fusée Amateur
 
-Ce dépôt contient le code de l'ordinateur de bord (boîte noire) développé en **C** (via le SDK Raspberry Pi Pico). Son rôle est d'enregistrer en continu et sans interruption les paramètres dynamiques du vol, puis d'y injecter un rapport d'analyse automatique dès que l'atterrissage est détecté, tout en poursuivant l'acquisition des données au sol.
+Ce dépôt contient le code de l'ordinateur de bord (boîte noire) développé en **C** (via le SDK Raspberry Pi Pico). Son rôle est d'enregistrer en continu et sans interruption les paramètres dynamiques du vol, puis de générer un rapport d'analyse automatique dès que l'atterrissage est détecté, tout en poursuivant l'acquisition des données au sol.
 
 ---
 
