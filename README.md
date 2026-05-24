@@ -30,7 +30,7 @@ Développé en **C**, le code tire parti des performances du RP2040 pour maximis
 
 ### 3. Insertion du Rapport à l'Atterrissage
 *   L'ordinateur surveille en parallèle la stabilisation de l'altitude barométrique. Lorsqu'un calme plat est détecté pendant plus de 5 secondes, la phase de vol est considérée comme terminée.
-*   **Génération du rapport à la volée :** Sans jamais interrompre ni fermer le flux d'enregistrement continu, le programme calcule les statistiques clés du vol ($H_{max}$, $V_{max}$, $G_{max}$, $A_{moyenne}$...) et vient insérer cette section de **conclusion automatique** au cœur dans un nouveau fichier `vol_conclusion_auro.txt` / `.csv`. L'acquisition des données brutes continue même après la conclusion pour être sur de ne raté aucune mesure.
+*   **Génération du rapport à la volée :** Sans jamais interrompre ni fermer le flux d'enregistrement continu, le programme calcule les statistiques clés du vol ($H_{max}$, $V_{max}$, $G_{max}$, $A_{moyenne}$...) et vient insérer cette section de **conclusion automatique** dans un nouveau fichier `vol_conclusion_auro.txt` / `.csv`. L'acquisition des données brutes continue même après la conclusion pour être sur de ne raté aucune mesure.
 
 ---
 
