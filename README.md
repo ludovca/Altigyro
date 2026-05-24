@@ -54,7 +54,7 @@ Le format généré par le code en C respecte scrupuleusement la structure suiva
     "temps_montée_ms" : 6000
     "temps_descente_ms" : 30000
   },
-  "donnies_brutes": [
+  "donnees_brutes": [
     [25380, 0.0, 0.98, 0.01, 0.02, 0.1, 0.0, 0.2],
     [25400, 0.1, 2.15, 0.05, -0.12, 1.5, 0.5, 12.0],
     [25420, 0.4, 4.80, 0.12, -0.45, 5.0, 2.1, 45.0]
