@@ -51,7 +51,6 @@ Chaque ligne du tableau des données brutes suit la structure suivante :
 {
   "infos_vol": {
     "statut": "Termine",
-    "frequence_hz": 50,
     "t0_decollage_ms": 25400
     "tf_atterrissage_ms": 35000
   },
