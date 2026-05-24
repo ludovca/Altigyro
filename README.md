@@ -1,36 +1,54 @@
 # Altigyro Ordinateur de Bord Enregistreur pour Fusée Amateur
 
-Ce dépôt contient le code de l'ordinateur de bord (boîte noire) développé en **C** (via le SDK Raspberry Pi Pico). Son rôle est d'enregistrer en continu et sans interruption les paramètres dynamiques du vol, puis de générer un rapport d'analyse automatique dès que l'atterrissage est détecté, tout en poursuivant l'acquisition des données au sol.
+Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour fusée amateur, développé en **C** pour le **Raspberry Pi Pico**. Le système enregistre en continu les données télémétriques au format **JSON** pour une exploitation simplifiée et une robustesse maximale.
 
 ---
 
 ## 🛠️ Architecture Matérielle
 
-L'ordinateur de bord est conçu pour être embarqué de manière autonome et s'articule autour des composants suivants :
+L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regroupe :
 
-*   **Microcontrôleur :** Raspberry Pi Pico (RP2040).
-*   **Altimètre :** Capteur de pression et température **BMP280** (Liaison I2C).
-*   **Centrale à inertie (IMU) :** Accéléromètre & Gyroscope 3 axes **GY-521 / MPU6050** (Liaison I2C).
-*   **Alimentation :** Batterie LiPo 1S légère.
+* **Calculateur :** Raspberry Pi Pico (RP2040).
+* **Altimètre :** BMP280 (Pression & Température) - Bus I2C.
+* **IMU 6-axes :** GY-521 / MPU6050 (Accéléromètre & Gyroscope) - Bus I2C.
+* **Stockage :** Mémoire Flash interne du RP2040 (via FatFS / LittleFS).
+* **Alimentation :** Batterie LiPo 1S.
 
 ---
 
-## 🧠 Logique du Code & Sécurisation des Données
+## 🧠 Logique de l'Ordinateur (SDK C)
 
-Développé en **C**, le code tire parti des performances du RP2040 pour maximiser la vitesse d'acquisition tout en garantissant la persistance des données face aux risques du vol :
+Le programme est optimisé pour la performance et la sécurité des données :
 
-### 1. Enregistrement Continu et Infini (Principe de la Boîte Noire)
-*   Dès son démarrage au sol, l'ordinateur initialise le système de fichiers (sur la mémoire Flash) et ouvre le fichier de log (`vol_data.txt` / `.csv`).
-*   Il y écrit immédiatement chaque ligne de données lue sur les capteurs à haute fréquence ($\approx 50\text{ à }100\text{ Hz}$).
-*   **Zéro coupure :** L'enregistrement continue tout le long du vol **et même après l'atterrissage** (pas de fermeture du flux). Pour sécuriser les données en temps réel, la mémoire Flash est synchronisée de manière logicielle à intervalles réguliers (via `f_sync()` ou `fflush()`), protégeant les logs contre les chocs ou les défaillances électriques.
+### 1. Enregistrement JSON en Flux Continu
+L'ordinateur écrit les données directement sur la Flash sans interruption. Le choix du format **JSON** permet une structure de données auto-descriptive :
+* **Écriture temps réel :** Chaque échantillon est immédiatement "flushé" (`f_sync` ou `fflush`) sur la Flash.
+* **Résilience :** Même en cas de coupure électrique à l'atterrissage ou de crash, le fichier reste lisible et les données sont préservées.
+* **Indépendance :** L'enregistrement ne s'arrête jamais, capturant les événements avant, pendant et après le vol.
 
-### 2. Détection du Décollage ($t_0$)
-*   L'ordinateur surveille l'accéléromètre en arrière-plan. Lorsqu'un pic vertical supérieur à $2\text{ G}$ se produit, le script enregistre l'index temporel exact de cet événement.
-*   Ce **Top Décollage ($t_0$)** sert de point de référence pour isoler la phase active du vol par rapport au bruit de fond et à l'attente sur la rampe.
+### 2. Détection d'Événements ($t_0$)
+L'algorithme analyse le flux de l'accéléromètre en tâche de fond. Dès qu'un seuil de **2 G** est franchi, le système marque l'index temporel **$t_0$** dans le fichier. Ce marqueur permet aux outils d'analyse de synchroniser la phase de propulsion (moteur D12-4) avec les données brutes.
 
-### 3. Insertion du Rapport à l'Atterrissage
-*   L'ordinateur surveille en parallèle la stabilisation de l'altitude barométrique. Lorsqu'un calme plat est détecté pendant plus de 5 secondes, la phase de vol est considérée comme terminée.
-*   **Génération du rapport à la volée :** Sans jamais interrompre ni fermer le flux d'enregistrement continu, le programme calcule les statistiques clés du vol ($H_{max}$, $V_{max}$, $G_{max}$, $A_{moyenne}$...) et vient insérer cette section de **conclusion automatique** dans un nouveau fichier `vol_conclusion_auro.txt` / `.csv`. L'acquisition des données brutes continue même après la conclusion pour être sur de ne raté aucune mesure.
+### 3. Rapport d'Atterrissage Automatique
+Dès que l'altimètre détecte une stabilité verticale prolongée (> 5s), l'ordinateur calcule et insère dynamiquement un objet JSON de résumé dans le flux, contenant :
+* L'altitude maximale ($H_{max}$) et la vitesse de pointe ($V_{max}$).
+* L'accélération de crête ($G_{max}$) et la vitesse de rotation maximale.
+
+---
+
+## 📄 Structure du Fichier de Log (`vol_data.json`)
+
+Le format est conçu pour être lu directement par n'importe quel langage moderne (Python, JS, C++) :
+
+```json
+{
+  "header": { "fusee": "Pico-Rocket", "moteur": "D12-4", "freq_hz": 50 },
+  "logs": [
+    { "t": 1250, "alt": 0.0, "acc": [0.01, 0.02, 0.98], "gyro": [0.1, 0.0, 0.0] },
+    { "t": 1270, "alt": 0.2, "acc": [0.05, -0.01, 2.15], "gyro": [1.2, 0.5, 0.2] }
+  ],
+  "summary": { "apogee_m": 222.2, "v_max_ms": 67.6, "g_max": 12.4 }
+}
 
 ---
 
