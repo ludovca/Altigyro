@@ -50,7 +50,6 @@ Le format généré par le code en C respecte scrupuleusement la structure suiva
     "altitude_max_m": 222.2,
     "vitesse_max_ms": 67.6,
     "acceleration_max_g": 12.4,
-    "vitesse_rotation_max_deg_s": 180.0
   },
   "donnies_brutes": [
     [25380, 0.0, 0.98, 0.01, 0.02, 0.1, 0.0, 0.2],
