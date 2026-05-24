@@ -30,26 +30,34 @@ L'ordinateur écrit les données directement sur la Flash sans interruption. Le 
 L'algorithme analyse le flux de l'accéléromètre en tâche de fond. Dès qu'un seuil de **2 G** est franchi, le système marque l'index temporel **$t_0$** dans le fichier. Ce marqueur permet aux outils d'analyse de synchroniser la phase de propulsion (moteur D12-4) avec les données brutes.
 
 ### 3. Rapport d'Atterrissage Automatique
-Dès que l'altimètre détecte une stabilité verticale prolongée (> 5s), l'ordinateur calcule et insère dynamiquement un objet JSON de résumé dans le flux, contenant :
-* L'altitude maximale ($H_{max}$) et la vitesse de pointe ($V_{max}$).
-* L'accélération de crête ($G_{max}$) et la vitesse de rotation maximale.
+Dès que l'altimètre détecte une stabilité verticale prolongée (> 5s), l'ordinateur calcule et insère dynamiquement un objet JSON de résumé dans le flux, contenant l'altitude maximale ($H_{max}$), la vitesse de pointe ($V_{max}$), l'accélération de crête ($G_{max}$) et la vitesse de rotation maximale.
 
 ---
 
 ## 📄 Structure du Fichier de Log (`vol_data.json`)
 
-Le format est conçu pour être lu directement par n'importe quel langage moderne (Python, JS, C++) :
+Le format généré par le code en C respecte scrupuleusement la structure suivante :
 
 ```json
 {
-  "header": { "fusee": "Pico-Rocket", "moteur": "D12-4", "freq_hz": 50 },
-  "logs": [
-    { "t": 1250, "alt": 0.0, "acc": [0.01, 0.02, 0.98], "gyro": [0.1, 0.0, 0.0] },
-    { "t": 1270, "alt": 0.2, "acc": [0.05, -0.01, 2.15], "gyro": [1.2, 0.5, 0.2] }
-  ],
-  "summary": { "apogee_m": 222.2, "v_max_ms": 67.6, "g_max": 12.4 }
+  "infos_vol": {
+    "statut": "Termine",
+    "frequence_hz": 50,
+    "t0_decollage_ms": 25400
+  },
+  "resume_analyse": {
+    "altitude_max_m": 222.2,
+    "vitesse_max_ms": 67.6,
+    "acceleration_max_g": 12.4,
+    "vitesse_rotation_max_deg_s": 180.0
+  },
+  "donnies_brutes": [
+    [25380, 0.0, 0.98, 0.01, 0.02, 0.1, 0.0, 0.2],
+    [25400, 0.1, 2.15, 0.05, -0.12, 1.5, 0.5, 12.0],
+    [25420, 0.4, 4.80, 0.12, -0.45, 5.0, 2.1, 45.0]
+  ]
 }
-
+```
 ---
 
 ## 📊 Outils d'Analyse Post-Vol (Sur PC)
