@@ -1,6 +1,6 @@
-# Altigyro Ordinateur de Bord Enregistreur pour Fusée Amateur
+# 🚀 Altigyro : Ordinateur de Bord & Enregistreur pour Fusée Amateur
 
-Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour fusée amateur, développé en **C** pour le **Raspberry Pi Pico**. Le système enregistre en continu les données télémétriques au format **JSON** pour une exploitation simplifiée et une robustesse maximale.
+Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour fusée amateur, développé en **C** pour le **Raspberry Pi Pico**, ainsi que les outils d'analyse de trajectoire 3D. Le système enregistre les données en flux continu pour une robustesse maximale en cas de crash.
 
 ---
 
@@ -9,53 +9,61 @@ Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour f
 L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regroupe :
 
 * **Calculateur :** Raspberry Pi Pico (RP2040).
-* **Altimètre :** BMP280 (Pression & Température) - Bus I2C.
-* **IMU 6-axes :** GY-521 / MPU6050 (Accéléromètre & Gyroscope) - Bus I2C.
-* **Stockage :** Mémoire Flash interne du RP2040 (via FatFS / LittleFS).
+* **Altimètre :** BMP280 (Pression & Température) via Bus I2C.
+* **IMU 6-axes :** MPU6050 (Accéléromètre & Gyroscope) via Bus I2C.
+* **Stockage :** Mémoire Flash interne du RP2040 (FatFS / LittleFS).
 * **Alimentation :** Batterie LiPo 1S.
+* **Rampe de lancement :** Tube aluminium Alberts (10x1mm, 2m) pour un guidage rigide et précis.
 
 ---
 
 ## 🧠 Logique de l'Ordinateur (SDK C)
 
-Le programme est optimisé pour la performance et la sécurité des données :
+### 1. Enregistrement Résilient
+Les données sont écrites en flux continu sur la Flash. En cas de coupure électrique à l'atterrissage, les données sont préservées grâce à des appels fréquents à `f_sync`.
 
-### 1. Enregistrement JSON en Flux Continu
-L'ordinateur écrit les données directement sur la Flash sans interruption. Le choix du format **JSON** permet une structure de données auto-descriptive :
-* **Écriture temps réel :** Chaque échantillon est immédiatement "flushé" (`f_sync` ou `fflush`) sur la Flash.
-* **Résilience :** Même en cas de coupure électrique à l'atterrissage ou de crash, le fichier reste lisible et les données sont préservées.
-* **Indépendance :** L'enregistrement ne s'arrête jamais, capturant les événements avant, pendant et après le vol.
+### 2. Détection dynamique du décollage ($t_0$)
+L'algorithme surveille l'accéléromètre en temps réel :
+* **Veille :** Enregistrement toutes les 50 ms.
+* **Vol (Seuil > 2G) :** Passage automatique à un échantillonnage haute fréquence toutes les **10 ms**.
 
-### 2. Détection d'Événements ($t_0$)
-
-L'algorithme analyse le flux de l'accéléromètre en tâche de fond. Dès qu'un seuil de **2 G** est franchi, le système commence a enregistrer beaucoup plus de données de vol qu'avant la détection du décollage (il enregistre des données touts les 10ms au lieu de 50 ms).
 ---
 
 ## 📊 Structure du fichier de données (`test.csv`)
 
-Le script lit les données brutes depuis un fichier nommé **`test.csv`**. Ce fichier doit contenir **10 colonnes** séparées par des virgules.
+Pour l'analyse post-vol, les données brutes doivent être converties ou extraites au format **`test.csv`** avec les 10 colonnes suivantes :
 
 | Index | Colonne | Unité | Description |
 | :--- | :--- | :--- | :--- |
-| 0 | **t_ms** | ms | Temps écoulé depuis le démarrage |
-| 1 | **P_Pa** | Pa | Pression atmosphérique (BMP280) |
+| 0 | **t_ms** | ms | Temps depuis le démarrage |
+| 1 | **P_Pa** | Pa | Pression atmosphérique |
 | 2 | **Temp_C** | °C | Température de l'air |
 | 3 | **Alt_m** | m | Altitude barométrique (Référence axe Y) |
 | 4 | **AccX** | m/s² | Accélération latérale (Capteur) |
 | 5 | **AccY** | m/s² | Accélération latérale (Capteur) |
 | 6 | **AccZ** | m/s² | Axe de poussée (Capteur) |
-| 7 | **GyroX** | °/s | Vitesse angulaire (Tangage / Pitch) |
-| 8 | **GyroY** | °/s | Vitesse angulaire (Lacet / Yaw) |
-| 9 | **GyroZ** | °/s | Vitesse angulaire (Roulis / Roll) |
+| 7 | **GyroX** | °/s | Rotation Tangage (Pitch) |
+| 8 | **GyroY** | °/s | Rotation Lacet (Yaw) |
+| 9 | **GyroZ** | °/s | Rotation Roulis (Roll) |
+
 ---
 
-## 📊 Outils d'Analyse Post-Vol (Sur PC)
+## 📈 Outils d'Analyse Post-Vol (Python)
 
-*Note : Ces scripts s'exécutent sur ordinateur après la récupération de la fusée. Ils ne sont pas chargés sur le Raspberry Pi Pico.*
+*Ces scripts s'exécutent sur PC après récupération de la fusée.*
 
-Le dépôt inclut des outils de traitement de données qui exploitent le fichier `vol_data.txt` généré par la boîte noire :
+1. **Générateur de Graphiques :** Trace l'évolution de la hauteur/temps (phases de poussée, apogée, descente).
+2. **Reconstructeur 3D :** * Utilise une **matrice de rotation** pour fusionner les données Gyro/Accéo.
+   * Recale l'axe vertical sur le baromètre pour annuler la dérive.
+   * Gère le déploiement du parachute (redressement de l'attitude) et la dérive due au vent.
+   * Génère un fichier **`trajectoire_3D.txt`** (nuage de points X Y Z) importable dans **FreeCAD** ou **Blender**.
 
-1. **Générateur de Graphiques :** Un script qui trace automatiquement l'évolution de la **hauteur en fonction du temps** pour visualiser précisément les phases de poussée, de dérive, d'apogée et de descente sous parachute.
-2. **Reconstructeur de Trajectoire 3D :** Un script de fusion de capteurs (Intégration de l'accéléromètre et calcul d'attitude via le gyroscope recalé par l'altimètre). 
-   * Cet outil extrait le plus de points de mesure possibles pour modéliser la vraie trajectoire de la fusée dans l'espace.
-   * Il génère un fichier texte (`trajectoire_3D.txt`) contenant une liste de coordonnées cartésiennes $(X, Y, Z)$. Ce fichier est directement prêt à être importé dans un logiciel de CAO ou de modélisation (comme **FreeCAD**) pour afficher le nuage de points ou tracer la courbe 3D exacte du vol.
+---
+
+## 🚀 Utilisation rapide
+
+1. Récupérez le fichier de données de la Flash du Pico.
+2. Nommez-le `test.csv` et placez-le dans le dossier des scripts Python.
+3. Lancez l'analyse :
+   ```bash
+   python calcul_trajectoire.py
