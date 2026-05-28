@@ -50,7 +50,6 @@ Le script lit les données brutes depuis un fichier nommé **`test.csv`**. Ce fi
 | 7 | **GyroX** | °/s | Vitesse angulaire (Tangage / Pitch) |
 | 8 | **GyroY** | °/s | Vitesse angulaire (Lacet / Yaw) |
 | 9 | **GyroZ** | °/s | Vitesse angulaire (Roulis / Roll) |
-```
 ---
 
 ## 📊 Outils d'Analyse Post-Vol (Sur PC)
