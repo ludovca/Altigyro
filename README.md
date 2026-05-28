@@ -17,10 +17,11 @@ L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regr
 
 ## 🧠 Logique de l'Ordinateur (SDK C)
 
-### 1. Enregistrement Dynamique
-L'algorithme surveille l'accéléromètre pour optimiser l'espace mémoire :
-* **Veille (Pré-vol) :** Enregistrement basse fréquence (50 ms) pour économiser la Flash.
-* **Vol (Seuil > 2G) :** Passage automatique en mode haute fréquence (**10 ms**) dès la détection du décollage.
+### 2. Gestion intelligente du stockage (Buffer Circulaire)
+Pour maximiser l'espace en Flash, l'ordinateur utilise un tampon glissant de **10 échantillons** :
+* **Pré-vol :** Les données tournent en RAM. Si la variation entre le premier et le dernier échantillon est négligeable, la mémoire Flash n'est pas sollicitée.
+* **Déclenchement ($t_0$) :** Dès qu'une différence significative (accélération > 2G) est détectée, le buffer est vidé vers la Flash et l'enregistrement haute fréquence (100Hz) commence.
+* **Résultat :** Le fichier `test.csv` ne contient que le vol utile, optimisant les 2Mo de stockage.
 
 ### 2. Post-Atterrissage : Récupération et Diagnostic
 Une fois la descente terminée et l'immobilité détectée :
