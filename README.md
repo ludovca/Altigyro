@@ -27,6 +27,7 @@ L'ordinateur écrit les données directement sur la Flash sans interruption. Le 
 * **Indépendance :** L'enregistrement ne s'arrête jamais, capturant les événements avant, pendant et après le vol.
 
 ### 2. Détection d'Événements ($t_0$)
+
 L'algorithme analyse le flux de l'accéléromètre en tâche de fond. Dès qu'un seuil de **2 G** est franchi, le système commence a enregistrer beaucoup plus de données de vol qu'avant la détection du décollage (il enregistre des données touts les 10ms au lieu de 50 ms).
 ---
 
