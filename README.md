@@ -34,40 +34,22 @@ Dès que l'altimètre détecte une stabilité verticale prolongée (> 5s), l'ord
 
 ---
 
-## 📄 Structure du Fichier de Log (`vol_data.json`)
+## 📊 Structure du fichier de données (`test.csv`)
 
-Le format généré par le code en C respecte scrupuleusement la structure suivante :
+Le script lit les données brutes depuis un fichier nommé **`test.csv`**. Ce fichier doit contenir **10 colonnes** séparées par des virgules.
 
-Chaque ligne du tableau des données brutes suit la structure suivante :
-`[t_ms, P_Pa, Temp_C, Alt_vert, A_x, A_y, A_z, G_x, G_y, G_z]`
-
-* **P_Pa** : Pression atmosphérique en Pascals (mesure brute du BMP280).
-* **Temp_C** : Température ambiante en degrés Celsius.
-* **Alt_vert** : Altitude relative calculée (mètres).
-* **A_xyz** : Accélérations linéaires sur les 3 axes ($\text{m/s}^2$).
-* **G_xyz** : Vitesses de rotation angulaire sur les 3 axes (degrés/seconde).
-
-```json
-{
-  "infos_vol": {
-    "statut": "Termine",
-    "t0_decollage_ms": 25400
-    "tf_atterrissage_ms": 35000
-  },
-  "resume_analyse": {
-    "altitude_max_m": 222.2,
-    "vitesse_max_ms": 67.6,
-    "acceleration_max_verticale": 12.4,
-    "acceleration_max": 17.4,
-    "temps_montée_ms" : 6000
-    "temps_descente_ms" : 30000
-  },
-  "donnees_brutes": [
-    [25380, 101325, 22.4, 0.0, 0.01, 0.98, 0.02, 0.1, 0.0, 0.2],
-    [25400, 101312, 22.4, 0.1, 0.05, 2.15, -0.12, 1.5, 0.5, 12.0],
-    [25420, 101285, 22.3, 0.4, 0.12, 4.80, -0.45, 5.0, 2.1, 45.0]
-  ]
-}
+| Index | Colonne | Unité | Description |
+| :--- | :--- | :--- | :--- |
+| 0 | **t_ms** | ms | Temps écoulé depuis le démarrage |
+| 1 | **P_Pa** | Pa | Pression atmosphérique (BMP280) |
+| 2 | **Temp_C** | °C | Température de l'air |
+| 3 | **Alt_m** | m | Altitude barométrique (Référence axe Y) |
+| 4 | **AccX** | m/s² | Accélération latérale (Capteur) |
+| 5 | **AccY** | m/s² | Accélération latérale (Capteur) |
+| 6 | **AccZ** | m/s² | Axe de poussée (Capteur) |
+| 7 | **GyroX** | °/s | Vitesse angulaire (Tangage / Pitch) |
+| 8 | **GyroY** | °/s | Vitesse angulaire (Lacet / Yaw) |
+| 9 | **GyroZ** | °/s | Vitesse angulaire (Roulis / Roll) |
 ```
 ---
 
