@@ -11,7 +11,7 @@ L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regr
 * **Calculateur :** Raspberry Pi Pico (RP2040).
 * **Altimètre :** BMP280 (Pression & Température) via Bus I2C.
 * **IMU 6-axes :** MPU6050 (Accéléromètre & Gyroscope) via Bus I2C.
-* **Bipper :**
+* **Bipper**
 
 ---
 
@@ -20,10 +20,10 @@ L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regr
 ### 1. Enregistrement Résilient
 Les données sont écrites en flux continu sur la Flash. En cas de coupure électrique à l'atterrissage, les données sont préservées grâce à des appels fréquents à `f_sync`.
 
-### 2. Détection dynamique du décollage ($t_0$)
+### 2. Détection dynamique du décollage
 L'algorithme surveille l'accéléromètre en temps réel :
 * **Veille :** Enregistrement toutes les 50 ms.
-* **Vol (Seuil > 2G) :** Passage automatique à un échantillonnage haute fréquence toutes les **10 ms**.
+* **Vol (Seuil > 2G) :** Passage automatique à un échantillonnage haute fréquence toutes les **10 ms**
 
 ---
 
