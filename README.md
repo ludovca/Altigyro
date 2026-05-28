@@ -27,11 +27,7 @@ L'ordinateur écrit les données directement sur la Flash sans interruption. Le 
 * **Indépendance :** L'enregistrement ne s'arrête jamais, capturant les événements avant, pendant et après le vol.
 
 ### 2. Détection d'Événements ($t_0$)
-L'algorithme analyse le flux de l'accéléromètre en tâche de fond. Dès qu'un seuil de **2 G** est franchi, le système marque l'index temporel **$t_0$** dans le fichier. Ce marqueur permet aux outils d'analyse de synchroniser la phase de propulsion (moteur D12-4) avec les données brutes.
-
-### 3. Rapport d'Atterrissage Automatique
-Dès que l'altimètre détecte une stabilité verticale prolongée (> 5s), l'ordinateur calcule et insère dynamiquement un objet JSON de résumé dans le flux, contenant l'altitude maximale ($H_{max}$), la vitesse de pointe ($V_{max}$), l'accélération de crête ($G_{max}$) et la vitesse de rotation maximale.
-
+L'algorithme analyse le flux de l'accéléromètre en tâche de fond. Dès qu'un seuil de **2 G** est franchi, le système commence a enregistrer beaucoup plus de données de vol qu'avant la détection du décollage (il enregistre des données touts les 10ms au lieu de 50 ms)..
 ---
 
 ## 📊 Structure du fichier de données (`test.csv`)
