@@ -11,9 +11,7 @@ L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regr
 * **Calculateur :** Raspberry Pi Pico (RP2040).
 * **Altimètre :** BMP280 (Pression & Température) via Bus I2C.
 * **IMU 6-axes :** MPU6050 (Accéléromètre & Gyroscope) via Bus I2C.
-* **Stockage :** Mémoire Flash interne du RP2040 (FatFS / LittleFS).
-* **Alimentation :** Batterie LiPo 1S.
-* **Rampe de lancement :** Tube aluminium Alberts (10x1mm, 2m) pour un guidage rigide et précis.
+* **Bipper :**
 
 ---
 
