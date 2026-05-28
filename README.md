@@ -12,8 +12,6 @@ L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regr
 * **Altimètre :** BMP280 (Pression & Température) via Bus I2C.
 * **IMU 6-axes :** MPU6050 (Accéléromètre & Gyroscope) via Bus I2C.
 * **Localisation :** Buzzer piézoélectrique pour signalisation sonore.
-* **Stockage :** Mémoire Flash interne (LittleFS).
-* **Rampe :** Tube aluminium Alberts (10x1mm, 2m) pour un guidage rigide.
 
 ---
 
