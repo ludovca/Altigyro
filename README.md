@@ -23,9 +23,11 @@ Pour maximiser l'espace en Flash, l'ordinateur utilise un tampon glissant de **1
 * **Déclenchement ($t_0$) :** Dès qu'une différence significative (accélération > 2G) est détectée, le buffer est vidé vers la Flash et l'enregistrement haute fréquence (100Hz) commence.
 * **Résultat :** Le fichier `test.csv` ne contient que le vol utile, optimisant les 2Mo de stockage.
 
-### 2. Post-Atterrissage : Récupération et Diagnostic
-Une fois la descente terminée et l'immobilité détectée :
-* **Balise Sonore :** La fusée émet des **bips intermittents** à haute fréquence pour faciliter sa localisation sur le terrain.
+### 2. Détection de fin de vol et récupération
+Pour éviter un arrêt prématuré (notamment à l'apogée), le système confirme l'atterrissage via une double validation stricte :
+* **Delta t de sécurité :** La détection de fin de vol est **bloquée** pendant les **1 minute 30** suivant le décollage. Cela garantit l'enregistrement complet, même en cas de vol plané prolongé.
+* **Stabilité Altigraphique :** Après ce délai, l'altitude barométrique doit être stable (variation proche de zéro) pendant **10 secondes consécutives**.
+* **Signal de récupération :** Une fois le vol validé terminé, l'enregistrement s'arrête et le buzzer émet des bips haute fréquence pour la localisation.
 
 ---
 
