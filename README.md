@@ -20,7 +20,7 @@ L'ordinateur est conçu pour être embarqué dans la coiffe de la fusée et regr
 ### 2. Gestion intelligente du stockage (Buffer Circulaire)
 Pour maximiser l'espace en Flash, l'ordinateur utilise un tampon glissant de **10 échantillons** :
 * **Pré-vol :** Les données tournent en RAM. Si la variation entre le premier et le dernier échantillon est négligeable, la mémoire Flash n'est pas sollicitée.
-* **Déclenchement ($t_0$) :** Dès qu'une différence significative (accélération > 2G) est détectée, le buffer est vidé vers la Flash et l'enregistrement haute fréquence (100Hz) commence.
+* **Déclenchement ($t_0$) :** Dès qu'une différence significative (accélération > 2G) est détectée, le buffer est vidé vers la Flash et l'enregistrement haute fréquence commence.
 * **Résultat :** Le fichier `test.csv` ne contient que le vol utile, optimisant les 2Mo de stockage.
 
 ### 2. Détection de fin de vol et récupération
