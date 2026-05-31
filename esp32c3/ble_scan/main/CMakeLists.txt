@@ -3,3 +3,4 @@ idf_component_register(
     INCLUDE_DIRS "."
     REQUIRES bt nvs_flash
 )
+target_link_libraries(${COMPONENT_LIB} m)

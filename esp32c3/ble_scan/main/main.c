@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #include "nvs_flash.h"
 #include "esp_log.h"
@@ -16,8 +17,11 @@
 typedef struct {
     ble_addr_t addr;
     int rssi;
+    float distance;
+    uint32_t last_seen; 
     char name[32];
     char brand[32];
+    char type[32];
     bool used;
 } device_entry_t;
 
@@ -70,6 +74,63 @@ static device_entry_t devices[MAX_DEVICES];
 static const char *TAG = "BLE_SCAN";
 
 /* ------------------ Helpers ------------------ */
+static const char* get_swift_pair_type(const uint8_t *mfg, uint8_t len)
+{
+    // Need at least: company(2) + beacon(1) + type(1)
+    if (len < 4) return NULL;
+
+    uint16_t company_id = mfg[0] | (mfg[1] << 8);
+    uint8_t beacon_id   = mfg[2];
+    uint8_t device_type = mfg[3];
+
+    if (company_id != 0x0006 || beacon_id != 0x01) {
+        return NULL; // Not a Microsoft Swift Pair packet
+    }
+
+    switch (device_type) {
+        case 0x01: return "Mouse";
+        case 0x02: return "Keyboard";
+        case 0x03: return "Number Pad";
+        case 0x04: return "Pen";
+        case 0x05: return "Audio";
+        case 0x06: return "Controller";
+        case 0x07: return "PC";
+        default:   return "Microsoft Device";
+    }
+}
+
+static const char* get_apple_type(const uint8_t *mfg, uint8_t len)
+{
+    if (len < 3) return NULL;
+
+    uint16_t company_id = mfg[0] | (mfg[1] << 8);
+    if (company_id != 0x004C) return NULL; // Not Apple
+
+    uint8_t subtype = mfg[2];
+
+    switch (subtype) {
+        case 0x06: return "iPhone / iPad / Mac";
+        case 0x07: return "Apple Watch";
+        case 0x0A: return "AirPods";
+        case 0x0C: return "AirTag / Find My";
+        case 0x0F: return "HomePod";
+        case 0x10: return "Beats";
+        case 0x12: return "Apple TV";
+        case 0x1F: return "AirPods Pro 2";
+        default:   return "Apple Device";
+    }
+}
+
+static float estimate_distance(int rssi, int tx_power)
+{
+    // Path-loss exponent (environment factor)
+    // 2.0 = free space, 2.7–3.5 = indoors, 4.0+ = obstructed
+    const float n = 2.2f;
+
+    // Formula: d = 10 ^ ((TxPower - RSSI) / (10 * n))
+    float ratio = (tx_power - rssi) / (10.0f * n);
+    return powf(10.0f, ratio);
+}
 
 static void addr_to_str(const ble_addr_t *addr, char *str, size_t size)
 {
@@ -110,23 +171,47 @@ static void print_table(void)
 {
     screen_clear();
 
-    printf("ADDR                RSSI   NAME                     BRAND\n");
-    printf("---------------------------------------------------------------\n");
+    printf("ADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND\n");
+    printf("-------------------------------------------------------------------------------------------\n");
+
+
 
     for (int i = 0; i < MAX_DEVICES; i++) {
         if (devices[i].used) {
             char addr_str[18];
             addr_to_str(&devices[i].addr, addr_str, sizeof(addr_str));
 
-            printf("%-18s  %-5d  %-24s  %s\n",
-                   addr_str,
-                   devices[i].rssi,
-                   devices[i].name[0] ? devices[i].name : "(none)",
-                   devices[i].brand[0] ? devices[i].brand : "Unknown");
+            printf("%-18s  %-5d  %-8.2f  %-13s  %-24s  %s\n",
+                addr_str,
+                devices[i].rssi,
+                devices[i].distance,
+                devices[i].type[0] ? devices[i].type : "-",
+                devices[i].name[0] ? devices[i].name : "(none)",
+                devices[i].brand[0] ? devices[i].brand : "Unknown");
+
         }
     }
 }
 
+static void cleanup_task(void *arg)
+{
+    const uint32_t TIMEOUT = 5000 / portTICK_PERIOD_MS;  // 5 seconds
+
+    while (1) {
+        uint32_t now = xTaskGetTickCount();
+
+        for (int i = 0; i < MAX_DEVICES; i++) {
+            if (devices[i].used &&
+                (now - devices[i].last_seen) > TIMEOUT) {
+
+                devices[i].used = false;  // remove device
+            }
+        }
+
+        print_table();
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
 /* ------------------ BLE Scan Callback ------------------ */
 
 static int scan_cb(struct ble_gap_event *event, void *arg)
@@ -137,6 +222,9 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
 
     const ble_addr_t *addr = &event->disc.addr;
     int rssi = event->disc.rssi;
+
+    /* Calculate distance */
+    float distance = estimate_distance(rssi, -59);  // -59 = default TxPower
 
     /* Parse advertisement fields */
     struct ble_hs_adv_fields fields;
@@ -154,11 +242,22 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
                      : sizeof(name) - 1;
         memcpy(name, fields.name, len);
     }
-
     /* Extract brand */
     const char *brand = "Unknown";
     if (fields.mfg_data && fields.mfg_data_len >= 2) {
         brand = get_brand_from_mfg(fields.mfg_data, fields.mfg_data_len);
+    }
+
+    /* Extract Swift Pair type (if any) */
+    const char *sp_type = NULL;
+    if (fields.mfg_data && fields.mfg_data_len >= 4) {
+        sp_type = get_swift_pair_type(fields.mfg_data, fields.mfg_data_len);
+    }
+
+    /* Extract Apple type (if any) */
+    const char *apple_type = NULL;
+    if (fields.mfg_data && fields.mfg_data_len >= 3) {
+        apple_type = get_apple_type(fields.mfg_data, fields.mfg_data_len);
     }
 
     /* Check if device already exists */
@@ -166,7 +265,18 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
         if (devices[i].used && addr_equal(&devices[i].addr, addr)) {
 
             devices[i].rssi = rssi;
+            devices[i].distance = distance;
+            devices[i].last_seen = xTaskGetTickCount();
+
             strncpy(devices[i].brand, brand, sizeof(devices[i].brand)-1);
+            devices[i].brand[sizeof(devices[i].brand)-1] = '\0';
+
+            devices[i].type[0] = '\0';
+            if (sp_type) {
+                strncpy(devices[i].type, sp_type, sizeof(devices[i].type)-1);
+            } else if (apple_type) {
+                strncpy(devices[i].type, apple_type, sizeof(devices[i].type)-1);
+            }
 
             print_table();
             return 0;
@@ -180,8 +290,21 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
             devices[i].used = true;
             devices[i].addr = *addr;
             devices[i].rssi = rssi;
+            devices[i].distance = distance;
+            devices[i].last_seen = xTaskGetTickCount();
+
             strncpy(devices[i].name, name, sizeof(devices[i].name)-1);
+            devices[i].name[sizeof(devices[i].name)-1] = '\0';
+
             strncpy(devices[i].brand, brand, sizeof(devices[i].brand)-1);
+            devices[i].brand[sizeof(devices[i].brand)-1] = '\0';
+
+            devices[i].type[0] = '\0';
+            if (sp_type) {
+                strncpy(devices[i].type, sp_type, sizeof(devices[i].type)-1);
+            } else if (apple_type) {
+                strncpy(devices[i].type, apple_type, sizeof(devices[i].type)-1);
+            }
 
             print_table();
             break;
@@ -225,6 +348,7 @@ void app_main(void)
 
     nimble_port_init();
     ble_hs_cfg.sync_cb = ble_app_on_sync;
+    xTaskCreate(cleanup_task, "cleanup_task", 4096, NULL, 1, NULL);
 
     nimble_port_freertos_init(host_task);
 }
