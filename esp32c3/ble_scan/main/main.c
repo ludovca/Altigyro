@@ -22,6 +22,7 @@ typedef struct {
     char name[32];
     char brand[32];
     char type[32];
+    uint32_t apple_subtypes_seen; 
     bool used;
 } device_entry_t;
 
@@ -74,6 +75,34 @@ static device_entry_t devices[MAX_DEVICES];
 static const char *TAG = "BLE_SCAN";
 
 /* ------------------ Helpers ------------------ */
+static void decide_device_type(device_entry_t *dev,
+                               const char *sp_type,
+                               const char *apple_type,
+                               uint8_t apple_subtype,
+                               const char *name)
+{
+    // Track all Apple subtypes seen for this device
+    if (apple_subtype != 0xFF) {
+        dev->apple_subtypes_seen |= (1u << (apple_subtype & 0x1F)); // 0–31
+    }
+
+    // 1) Name-based Beats override (strongest signal)
+    if (name && (strstr(name, "Beats") || strstr(name, "Studio"))) {
+        strncpy(dev->type, "Beats Headphones", sizeof(dev->type) - 1);
+        dev->type[sizeof(dev->type) - 1] = '\0';
+        return;
+    }
+
+    // 3) Normal priority: Swift Pair > Apple type
+    if (sp_type) {
+        strncpy(dev->type, sp_type, sizeof(dev->type) - 1);
+        dev->type[sizeof(dev->type) - 1] = '\0';
+    } else if (apple_type) {
+        strncpy(dev->type, apple_type, sizeof(dev->type) - 1);
+        dev->type[sizeof(dev->type) - 1] = '\0';
+    }
+}
+
 static const char* get_swift_pair_type(const uint8_t *mfg, uint8_t len)
 {
     // Need at least: company(2) + beacon(1) + type(1)
@@ -114,7 +143,7 @@ static const char* get_apple_type(const uint8_t *mfg, uint8_t len)
         case 0x0A: return "AirPods";
         case 0x0C: return "AirTag / Find My";
         case 0x0F: return "HomePod";
-        case 0x10: return "Beats";
+        case 0x10: return "Beats(not)";
         case 0x12: return "Apple TV";
         case 0x1F: return "AirPods Pro 2";
         default:   return "Apple Device";
@@ -242,6 +271,7 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
                      : sizeof(name) - 1;
         memcpy(name, fields.name, len);
     }
+
     /* Extract brand */
     const char *brand = "Unknown";
     if (fields.mfg_data && fields.mfg_data_len >= 2) {
@@ -254,10 +284,16 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
         sp_type = get_swift_pair_type(fields.mfg_data, fields.mfg_data_len);
     }
 
-    /* Extract Apple type (if any) */
+    /* Extract Apple type + subtype (for correlation) */
     const char *apple_type = NULL;
+    uint8_t apple_subtype = 0xFF;
+
     if (fields.mfg_data && fields.mfg_data_len >= 3) {
-        apple_type = get_apple_type(fields.mfg_data, fields.mfg_data_len);
+        uint16_t company_id = fields.mfg_data[0] | (fields.mfg_data[1] << 8);
+        if (company_id == 0x004C) {
+            apple_subtype = fields.mfg_data[2];
+            apple_type = get_apple_type(fields.mfg_data, fields.mfg_data_len);
+        }
     }
 
     /* Check if device already exists */
@@ -271,12 +307,8 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
             strncpy(devices[i].brand, brand, sizeof(devices[i].brand)-1);
             devices[i].brand[sizeof(devices[i].brand)-1] = '\0';
 
-            devices[i].type[0] = '\0';
-            if (sp_type) {
-                strncpy(devices[i].type, sp_type, sizeof(devices[i].type)-1);
-            } else if (apple_type) {
-                strncpy(devices[i].type, apple_type, sizeof(devices[i].type)-1);
-            }
+            /* Multi‑packet correlation happens here */
+            decide_device_type(&devices[i], sp_type, apple_type, apple_subtype, name);
 
             print_table();
             return 0;
@@ -292,6 +324,7 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
             devices[i].rssi = rssi;
             devices[i].distance = distance;
             devices[i].last_seen = xTaskGetTickCount();
+            devices[i].apple_subtypes_seen = 0;   // IMPORTANT
 
             strncpy(devices[i].name, name, sizeof(devices[i].name)-1);
             devices[i].name[sizeof(devices[i].name)-1] = '\0';
@@ -300,11 +333,9 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
             devices[i].brand[sizeof(devices[i].brand)-1] = '\0';
 
             devices[i].type[0] = '\0';
-            if (sp_type) {
-                strncpy(devices[i].type, sp_type, sizeof(devices[i].type)-1);
-            } else if (apple_type) {
-                strncpy(devices[i].type, apple_type, sizeof(devices[i].type)-1);
-            }
+
+            /* Multi‑packet correlation for new device */
+            decide_device_type(&devices[i], sp_type, apple_type, apple_subtype, name);
 
             print_table();
             break;
