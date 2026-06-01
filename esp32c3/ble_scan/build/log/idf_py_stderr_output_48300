@@ -1,0 +1,29 @@
+CMake Error at C:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:67 (message):
+  The C compiler
+
+    "C:/Espressif/tools/riscv32-esp-elf/esp-13.2.0_20250707/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: '//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/build/CMakeFiles/CMakeScratch/TryCompile-e62t6n'
+    
+    Run Build Command(s): C:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_568e6
+    [1/2] C:\Espressif\tools\riscv32-esp-elf\esp-13.2.0_20250707\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe   -march=rv32imc_zicsr_zifencei -o CMakeFiles\cmTC_568e6.dir\testCCompiler.c.obj -c \\wsl.localhost\Ubuntu-22.04\home\alex\esp32-C3\esp32c3\ble_scan\build\CMakeFiles\CMakeScratch\TryCompile-e62t6n\testCCompiler.c
+    FAILED: CMakeFiles/cmTC_568e6.dir/testCCompiler.c.obj 
+    C:\Espressif\tools\riscv32-esp-elf\esp-13.2.0_20250707\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe   -march=rv32imc_zicsr_zifencei -o CMakeFiles\cmTC_568e6.dir\testCCompiler.c.obj -c \\wsl.localhost\Ubuntu-22.04\home\alex\esp32-C3\esp32c3\ble_scan\build\CMakeFiles\CMakeScratch\TryCompile-e62t6n\testCCompiler.c
+    Assembler messages:
+    Fatal error: can't create CMakeFiles\cmTC_568e6.dir\testCCompiler.c.obj: Invalid argument
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  C:/Espressif/frameworks/esp-idf-v5.2.7/tools/cmake/project.cmake:513 (__project)
+  CMakeLists.txt:3 (project)
+
+

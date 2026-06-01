@@ -1,0 +1,13 @@
+-- IDF_TARGET is not set, guessed 'esp32c3' from sdkconfig '//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/sdkconfig'
+-- Found Git: C:/Espressif/tools/idf-git/2.44.0/cmd/git.exe (found version "2.44.0.windows.1")
+-- Component directory C:/Espressif/frameworks/esp-idf-v5.2.7/components/esp_vfs_console does not contain a CMakeLists.txt file. No component will be added
+-- ccache will be used for faster recompilation
+-- The C compiler identification is unknown
+-- The CXX compiler identification is unknown
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Espressif/tools/riscv32-esp-elf/esp-13.2.0_20250707/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - failed
+-- Check for working C compiler: C:/Espressif/tools/riscv32-esp-elf/esp-13.2.0_20250707/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Check for working C compiler: C:/Espressif/tools/riscv32-esp-elf/esp-13.2.0_20250707/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe - broken
+-- Configuring incomplete, errors occurred!

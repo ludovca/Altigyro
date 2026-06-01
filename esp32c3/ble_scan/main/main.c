@@ -310,7 +310,6 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
             /* Multi‑packet correlation happens here */
             decide_device_type(&devices[i], sp_type, apple_type, apple_subtype, name);
 
-            print_table();
             return 0;
         }
     }
@@ -337,7 +336,6 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
             /* Multi‑packet correlation for new device */
             decide_device_type(&devices[i], sp_type, apple_type, apple_subtype, name);
 
-            print_table();
             break;
         }
     }

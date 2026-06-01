@@ -15,7 +15,7 @@
 
 set(HEAD_HASH)
 
-file(READ "C:/Users/alex/esp_code/ble_scan/build/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
+file(READ "//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/build/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
 
 string(STRIP "${HEAD_CONTENTS}" HEAD_CONTENTS)
 set(GIT_DIR "C:/Espressif/frameworks/esp-idf-v5.2.7/.git")
@@ -34,17 +34,17 @@ if(HEAD_CONTENTS MATCHES "ref")
 	# named branch
 	string(REPLACE "ref: " "" HEAD_REF "${HEAD_CONTENTS}")
 	if(EXISTS "${GIT_DIR}/${HEAD_REF}")
-		configure_file("${GIT_DIR}/${HEAD_REF}" "C:/Users/alex/esp_code/ble_scan/build/CMakeFiles/git-data/head-ref" COPYONLY)
+		configure_file("${GIT_DIR}/${HEAD_REF}" "//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/build/CMakeFiles/git-data/head-ref" COPYONLY)
 	elseif(EXISTS "${GIT_DIR}/logs/${HEAD_REF}")
-		configure_file("${GIT_DIR}/logs/${HEAD_REF}" "C:/Users/alex/esp_code/ble_scan/build/CMakeFiles/git-data/head-ref" COPYONLY)
+		configure_file("${GIT_DIR}/logs/${HEAD_REF}" "//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/build/CMakeFiles/git-data/head-ref" COPYONLY)
 		set(HEAD_HASH "${HEAD_REF}")
 	endif()
 else()
 	# detached HEAD
-	configure_file("${GIT_DIR}/HEAD" "C:/Users/alex/esp_code/ble_scan/build/CMakeFiles/git-data/head-ref" COPYONLY)
+	configure_file("${GIT_DIR}/HEAD" "//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/build/CMakeFiles/git-data/head-ref" COPYONLY)
 endif()
 
 if(NOT HEAD_HASH)
-	file(READ "C:/Users/alex/esp_code/ble_scan/build/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
+	file(READ "//wsl.localhost/Ubuntu-22.04/home/alex/esp32-C3/esp32c3/ble_scan/build/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
 	string(STRIP "${HEAD_HASH}" HEAD_HASH)
 endif()
