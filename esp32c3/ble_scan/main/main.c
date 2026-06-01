@@ -22,8 +22,13 @@ typedef struct {
     char name[32];
     char brand[32];
     char type[32];
+    char model[32]; 
     uint32_t apple_subtypes_seen; 
     bool used;
+    uint16_t company_id;
+    uint8_t first_subtype;
+    uint8_t adv_len;
+    int8_t last_rssi;
 } device_entry_t;
 
 typedef struct {
@@ -75,6 +80,17 @@ static device_entry_t devices[MAX_DEVICES];
 static const char *TAG = "BLE_SCAN";
 
 /* ------------------ Helpers ------------------ */
+bool is_airpods(const uint8_t *md, int len){
+
+    if (len < 5) return false;
+    if (md[0]!=0x4C || md[1]!=0x00) return false;
+    if(md[2]==0x07 && md[3] == 0x19) return true;
+    if(md[2] == 0x06 && md[3] == 0x03) return true;
+    if(len>= 25 && md[2] == 0x01) return true;
+
+    return false;
+}
+
 static void decide_device_type(device_entry_t *dev,
                                const char *sp_type,
                                const char *apple_type,
@@ -169,11 +185,6 @@ static void addr_to_str(const ble_addr_t *addr, char *str, size_t size)
              addr->val[2], addr->val[1], addr->val[0]);
 }
 
-static bool addr_equal(const ble_addr_t *a, const ble_addr_t *b)
-{
-    return memcmp(a->val, b->val, 6) == 0;
-}
-
 static const char* get_brand_from_mfg(const uint8_t *data, uint8_t len)
 {
     if (len < 2) return "Unknown";
@@ -200,7 +211,7 @@ static void print_table(void)
 {
     screen_clear();
 
-    printf("ADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND\n");
+    printf("ADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL\n");
     printf("-------------------------------------------------------------------------------------------\n");
 
 
@@ -210,13 +221,14 @@ static void print_table(void)
             char addr_str[18];
             addr_to_str(&devices[i].addr, addr_str, sizeof(addr_str));
 
-            printf("%-18s  %-5d  %-8.2f  %-13s  %-24s  %s\n",
+            printf("%-18s  %-5d  %-8.2f  %-13s  %-24s  %-15s  %s\n",
                 addr_str,
                 devices[i].rssi,
                 devices[i].distance,
                 devices[i].type[0] ? devices[i].type : "-",
                 devices[i].name[0] ? devices[i].name : "(none)",
-                devices[i].brand[0] ? devices[i].brand : "Unknown");
+                devices[i].brand[0] ? devices[i].brand : "Unknown",
+                devices[i].model[0] ? devices[i].model : "-");
 
         }
     }
@@ -243,6 +255,73 @@ static void cleanup_task(void *arg)
 }
 /* ------------------ BLE Scan Callback ------------------ */
 
+static int on_model_read(uint16_t conn_handle,
+                         const struct ble_gatt_error *error,
+                         struct ble_gatt_attr *attr,
+                         void *arg)
+{
+    if (error->status != 0) return 0;
+
+    int index = (int)(intptr_t)arg;   // device index passed from connect
+    if (index >= 0 && index < MAX_DEVICES) {
+        snprintf(devices[index].model,
+                 sizeof(devices[index].model),
+                 "%.*s",
+                 attr->om->om_len,
+                 (char *)attr->om->om_data);
+    }
+
+    print_table();  // ⭐ update UI
+
+    return 0;
+}
+
+static int on_characteristic(uint16_t conn_handle,
+                             const struct ble_gatt_error *error,
+                             const struct ble_gatt_chr *chr,
+                             void *arg)
+{
+    if (error->status != 0) return 0;
+
+    if (chr->uuid.u16.value == 0x2A24) { // Model Number
+        printf("Found Model Number characteristic\n");
+        ble_gattc_read(conn_handle, chr->val_handle, on_model_read, arg);   // pass index forward
+
+    }
+    return 0;
+}
+
+static int on_service(uint16_t conn_handle,
+                      const struct ble_gatt_error *error,
+                      const struct ble_gatt_svc *svc,
+                      void *arg)
+{
+    if (error->status != 0) return 0;
+
+    if (svc->uuid.u16.value == 0x180A) { // Device Information Service
+        printf("Found Device Information Service\n");
+        ble_gattc_disc_all_chrs(conn_handle, svc->start_handle, svc->end_handle, on_characteristic, arg);   // pass index forward
+
+    }
+    return 0;
+}
+
+static int on_connect(struct ble_gap_event *event, void *arg)
+{
+    if (event->connect.status == 0) {
+        printf("Connected, discovering services...\n");
+       ble_gattc_disc_all_svcs(event->connect.conn_handle, on_service, arg);   // pass index forward
+    }
+    return 0;
+}
+
+static void connect_to_device(const ble_addr_t *addr, int index)
+{
+    ble_gap_connect(BLE_OWN_ADDR_PUBLIC, addr, 30000, NULL,
+                    on_connect, (void *)(intptr_t)index);
+}
+
+
 static int scan_cb(struct ble_gap_event *event, void *arg)
 {
     if (event->type != BLE_GAP_EVENT_DISC) {
@@ -253,7 +332,7 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
     int rssi = event->disc.rssi;
 
     /* Calculate distance */
-    float distance = estimate_distance(rssi, -59);  // -59 = default TxPower
+    float distance = estimate_distance(rssi, -59);
 
     /* Parse advertisement fields */
     struct ble_hs_adv_fields fields;
@@ -263,81 +342,173 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
                             event->disc.data,
                             event->disc.length_data);
 
+    /* Manufacturer data */
+    const uint8_t *md = NULL;
+    int md_len = 0;
+
+    if (fields.mfg_data && fields.mfg_data_len > 0) {
+        md = fields.mfg_data;
+        md_len = fields.mfg_data_len;
+    }
+
+    /* Company ID + subtype */
+    uint16_t company_id = 0xFFFF;
+    uint8_t subtype = 0xFF;
+
+    if (md_len >= 3) {
+        company_id = md[0] | (md[1] << 8);
+        subtype    = md[2];
+    }
+
     /* Extract name */
     char name[32] = {0};
     if (fields.name && fields.name_len > 0) {
-        size_t len = fields.name_len < sizeof(name) - 1
-                     ? fields.name_len
-                     : sizeof(name) - 1;
+        size_t len = MIN(fields.name_len, sizeof(name) - 1);
         memcpy(name, fields.name, len);
     }
 
-    /* Extract brand */
+    /* Brand */
     const char *brand = "Unknown";
-    if (fields.mfg_data && fields.mfg_data_len >= 2) {
-        brand = get_brand_from_mfg(fields.mfg_data, fields.mfg_data_len);
+    if (md_len >= 2) {
+        brand = get_brand_from_mfg(md, md_len);
     }
 
-    /* Extract Swift Pair type (if any) */
+    /* Swift Pair */
     const char *sp_type = NULL;
-    if (fields.mfg_data && fields.mfg_data_len >= 4) {
-        sp_type = get_swift_pair_type(fields.mfg_data, fields.mfg_data_len);
+    if (md_len >= 4) {
+        sp_type = get_swift_pair_type(md, md_len);
     }
 
-    /* Extract Apple type + subtype (for correlation) */
+    /* Apple subtype */
     const char *apple_type = NULL;
     uint8_t apple_subtype = 0xFF;
 
-    if (fields.mfg_data && fields.mfg_data_len >= 3) {
-        uint16_t company_id = fields.mfg_data[0] | (fields.mfg_data[1] << 8);
-        if (company_id == 0x004C) {
-            apple_subtype = fields.mfg_data[2];
-            apple_type = get_apple_type(fields.mfg_data, fields.mfg_data_len);
-        }
+    if (company_id == 0x004C && md_len >= 3) {
+        apple_subtype = md[2];
+        apple_type = get_apple_type(md, md_len);
     }
 
-    /* Check if device already exists */
+    /* Try to match an existing logical device */
     for (int i = 0; i < MAX_DEVICES; i++) {
-        if (devices[i].used && addr_equal(&devices[i].addr, addr)) {
+        if (!devices[i].used) continue;
 
+        bool same_device = false;
+
+        /* 1. Company ID match */
+        if (company_id == devices[i].company_id) {
+
+            /* Apple: match subtype */
+            if (company_id == 0x004C) {
+                if (apple_subtype != 0xFF &&
+                    apple_subtype == devices[i].first_subtype) {
+                    same_device = true;
+                }
+            }
+
+            /* Microsoft Swift Pair */
+            else if (company_id == 0x0006) {
+                same_device = true;
+            }
+
+            /* Generic vendor */
+            else if (abs(devices[i].last_rssi - rssi) < 15) {
+                same_device = true;
+            }
+        }
+
+        /* 2. Unknown vendor: match name */
+        if (!same_device && company_id == 0xFFFF) {
+            if (name[0] && devices[i].name[0] &&
+                strcmp(name, devices[i].name) == 0) {
+                same_device = true;
+            }
+        }
+
+        /* 3. Fallback: name match */
+        if (!same_device && name[0] && devices[i].name[0]) {
+            if (strcmp(name, devices[i].name) == 0) {
+                same_device = true;
+            }
+        }
+
+        /* 4. Fallback: adv length + RSSI */
+        if (!same_device) {
+            if (devices[i].adv_len == event->disc.length_data &&
+                abs(devices[i].last_rssi - rssi) < 10) {
+                same_device = true;
+            }
+        }
+
+        /* Update existing device */
+        if (same_device) {
+
+            devices[i].addr = *addr;
             devices[i].rssi = rssi;
+            devices[i].last_rssi = rssi;
             devices[i].distance = distance;
             devices[i].last_seen = xTaskGetTickCount();
 
+            if (name[0] && devices[i].name[0] == '\0') {
+                strncpy(devices[i].name, name, sizeof(devices[i].name)-1);
+            }
+
             strncpy(devices[i].brand, brand, sizeof(devices[i].brand)-1);
-            devices[i].brand[sizeof(devices[i].brand)-1] = '\0';
 
-            /* Multi‑packet correlation happens here */
-            decide_device_type(&devices[i], sp_type, apple_type, apple_subtype, name);
+            /* DEVICE TYPE CLASSIFICATION */
+            if (is_airpods(md, md_len)) {
+                strcpy(devices[i].type, "AirPods");
+            }
+            else if (company_id == 0x004C && apple_subtype == 0x12) {
+                strcpy(devices[i].type, "Apple TV");
+            }
+            else if (company_id == 0x004C) {
+                strcpy(devices[i].type, "Apple Device");
+            }
+            else {
+                strcpy(devices[i].type, "Unknown");
+            }
 
-            print_table();
             return 0;
         }
     }
 
-    /* New device */
+    /* NEW DEVICE */
     for (int i = 0; i < MAX_DEVICES; i++) {
         if (!devices[i].used) {
 
             devices[i].used = true;
             devices[i].addr = *addr;
             devices[i].rssi = rssi;
+            devices[i].last_rssi = rssi;
             devices[i].distance = distance;
             devices[i].last_seen = xTaskGetTickCount();
-            devices[i].apple_subtypes_seen = 0;   // IMPORTANT
+
+            devices[i].company_id = company_id;
+            devices[i].first_subtype = subtype;
+            devices[i].adv_len = event->disc.length_data;
 
             strncpy(devices[i].name, name, sizeof(devices[i].name)-1);
-            devices[i].name[sizeof(devices[i].name)-1] = '\0';
-
             strncpy(devices[i].brand, brand, sizeof(devices[i].brand)-1);
-            devices[i].brand[sizeof(devices[i].brand)-1] = '\0';
 
-            devices[i].type[0] = '\0';
+            /* DEVICE TYPE CLASSIFICATION */
+            if (is_airpods(md, md_len)) {
+                strcpy(devices[i].type, "AirPods");
+            }
+            else if (company_id == 0x004C && apple_subtype == 0x12) {
+                strcpy(devices[i].type, "Apple TV");
+            }
+            else if (company_id == 0x004C) {
+                strcpy(devices[i].type, "Apple Device");
+            }
+            else {
+                strcpy(devices[i].type, "Unknown");
+            }
 
-            /* Multi‑packet correlation for new device */
-            decide_device_type(&devices[i], sp_type, apple_type, apple_subtype, name);
+            /* Optional: GATT read */
+            if (company_id != 0x004C && company_id != 0x0006) {
+                connect_to_device(addr, i);
+            }
 
-            print_table();
             break;
         }
     }
