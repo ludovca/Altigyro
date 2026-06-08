@@ -22,7 +22,9 @@ typedef struct {
     char name[32];
     char brand[32];
     char type[32];
-    char model[32]; 
+    char model[32];
+    char addr_str[18];      // cached address string
+    char last_line[512];    // last printed UI line
     uint32_t apple_subtypes_seen; 
     bool used;
     uint16_t company_id;
@@ -209,27 +211,32 @@ static void screen_clear(void)
 
 static void print_table(void)
 {
-    screen_clear();
+    static bool header_drawn = false;
 
-    printf("ADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL\n");
-    printf("-------------------------------------------------------------------------------------------\n");
-
-
+    if (!header_drawn) {
+        screen_clear();
+        printf("ADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL\n");
+        printf("-------------------------------------------------------------------------------------------\n");
+        header_drawn = true;
+    }
 
     for (int i = 0; i < MAX_DEVICES; i++) {
-        if (devices[i].used) {
-            char addr_str[18];
-            addr_to_str(&devices[i].addr, addr_str, sizeof(addr_str));
+        if (!devices[i].used) continue;
 
-            printf("%-18s  %-5d  %-8.2f  %-13s  %-24s  %-15s  %s\n",
-                addr_str,
-                devices[i].rssi,
-                devices[i].distance,
-                devices[i].type[0] ? devices[i].type : "-",
-                devices[i].name[0] ? devices[i].name : "(none)",
-                devices[i].brand[0] ? devices[i].brand : "Unknown",
-                devices[i].model[0] ? devices[i].model : "-");
+        char line[512];
+        snprintf(line, sizeof(line),
+                 "%-18s  %-5d  %-8.2f  %-13s  %-24s  %-15s  %s",
+                 devices[i].addr_str,
+                 devices[i].rssi,
+                 devices[i].distance,
+                 devices[i].type[0] ? devices[i].type : "-",
+                 devices[i].name[0] ? devices[i].name : "(none)",
+                 devices[i].brand[0] ? devices[i].brand : "Unknown",
+                 devices[i].model[0] ? devices[i].model : "-");
 
+        if (strcmp(line, devices[i].last_line) != 0) {
+            printf("\033[%d;1H%s", i + 3, line);
+            strncpy(devices[i].last_line, line, sizeof(devices[i].last_line));
         }
     }
 }
@@ -478,6 +485,8 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
 
             devices[i].used = true;
             devices[i].addr = *addr;
+            addr_to_str(&devices[i].addr, devices[i].addr_str, sizeof(devices[i].addr_str));
+            devices[i].last_line[0] = '\0'; // force first update
             devices[i].rssi = rssi;
             devices[i].last_rssi = rssi;
             devices[i].distance = distance;
@@ -521,8 +530,8 @@ static int scan_cb(struct ble_gap_event *event, void *arg)
 static void start_scan(void)
 {
     struct ble_gap_disc_params params = {
-        .itvl = 0x50,
-        .window = 0x30,
+        .itvl = 0x20,   // 20ms
+        .window = 0x20, // 100% duty cycle (idk what that is)
         .filter_policy = BLE_HCI_SCAN_FILT_NO_WL,
         .passive = 0,
         .limited = 0

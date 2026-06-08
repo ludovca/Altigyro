@@ -1,0 +1,1199 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x42006c76
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1820
+load:0x403cc710,len:0xbd0
+load:0x403ce710,len:0x2f4c
+entry 0x403cc71a
+[0;32mI (24) boot: ESP-IDF v5.2.7-dirty 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time May 31 2026 00:13:37[0m
+[0;32mI (25) boot: chip revision: v0.4[0m
+[0;32mI (28) boot: efuse block revision: v1.3[0m
+[0;32mI (32) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (37) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (63) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (70) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (85) boot: End of partition table[0m
+[0;32mI (89) esp_image: segment 0: paddr=00010020 vaddr=3c050020 size=11ad4h ( 72404) map[0m
+[0;32mI (109) esp_image: segment 1: paddr=00021afc vaddr=3fc92800 size=022e4h (  8932) load[0m
+[0;32mI (111) esp_image: segment 2: paddr=00023de8 vaddr=40380000 size=0c230h ( 49712) load[0m
+[0;32mI (124) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=4fc94h (326804) map[0m
+[0;32mI (176) esp_image: segment 4: paddr=0007fcbc vaddr=4038c230 size=064bch ( 25788) load[0m
+[0;32mI (187) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (187) boot: Disabling RNG early entropy source...[0m
+[0;32mI (198) cpu_start: Unicore app[0m
+[0;32mI (207) cpu_start: Pro cpu start user code[0m
+[0;32mI (207) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (207) cpu_start: Application information:[0m
+[0;32mI (210) cpu_start: Project name:     ble_scan[0m
+[0;32mI (215) cpu_start: App version:      1[0m
+[0;32mI (219) cpu_start: Compile time:     May 31 2026 00:08:31[0m
+[0;32mI (225) cpu_start: ELF file SHA256:  ae3bd260c...[0m
+[0;32mI (231) cpu_start: ESP-IDF:          v5.2.7-dirty[0m
+[0;32mI (236) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (241) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (246) cpu_start: Chip rev:         v0.4[0m
+[0;32mI (251) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (258) heap_init: At 3FC99060 len 00026FA0 (155 KiB): RAM[0m
+[0;32mI (264) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (271) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (278) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (285) spi_flash: detected chip: generic[0m
+[0;32mI (289) spi_flash: flash io: dio[0m
+[0;33mW (293) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (306) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (313) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (330) main_task: Started on CPU0[0m
+[0;32mI (330) main_task: Calling app_main()[0m
+[0;32mI (340) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (340) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (340) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (350) BLE_INIT: Bluetooth MAC: a4:cb:8f:21:fb:a2[0m
+[0;32mI (360) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (400) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+[0;33mW (460) NimBLE: Failed to persist local IRK (rc=8)[0m
+[0;32mI (460) NimBLE: GAP procedure initiated: stop advertising.
+[0m
+[0;32mI (470) NimBLE: Failed to restore IRKs from store; status=8
+[0m
+[0;32mI (470) BLE_SCAN: Starting BLE scan[0m
+[0;32mI (480) NimBLE: GAP procedure initiated: discovery; [0m
+[0;32mI (480) NimBLE: own_addr_type=0 filter_policy=0 passive=0 limited=0 filter_duplicates=0 [0m
+[0;32mI (490) NimBLE: duration=forever[0m
+[0;32mI (500) NimBLE: 
+[0m
+[0;32mI (500) main_task: Returned from app_main()[0m
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -59    1.00      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        (none)                    Unknown          -
+C0:C1:B7:DD:CA:B0   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -59    1.00      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -80    9.01      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -80    9.01      Unknown        (none)                    Unknown          -
+C0:C1:B7:DD:CA:B0   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+20:15:DE:36:31:27   -68    2.57      Unknown        (none)                    Samsung          -
+06:54:91:21:5F:30   -87    18.74     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -68    2.57      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -87    18.74     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -83    12.33     Unknown        (none)                    Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+70:82:B9:03:51:50   -98    59.26     Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -60    1.11      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -83    12.33     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -87    18.74     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -86    16.88     Unknown        (none)                    Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+70:82:B9:03:51:50   -98    59.26     Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -62    1.37      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -87    18.74     Unknown        (none)                    Unknown          -
+C0:C1:B7:DD:CA:B0   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -85    15.20     Unknown        (none)                    Unknown          -
+C0:C1:B7:DD:CA:B0   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -62    1.37      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -88    20.81     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -86    16.88     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -89    23.10     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -80    9.01      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -62    1.37      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -95    43.29     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -52    0.48      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -95    43.29     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -95    43.29     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -64    1.69      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -88    20.81     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -92    31.62     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+70:82:B9:03:51:50   -98    59.26     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -95    43.29     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -79    8.11      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -93    35.11     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+70:82:B9:03:51:50   -98    59.26     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -95    43.29     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -81    10.00     Apple TV       (none)                    Apple / Beats    -
+70:82:B9:03:51:50   -98    59.26     Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -91    28.48     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -81    10.00     Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -59    1.00      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -89    23.10     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -52    0.48      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -87    18.74     Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -59    1.00      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -88    20.81     Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -83    12.33     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -60    1.11      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -86    16.88     Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -89    23.10     Apple Device   (none)                    Apple / Beats    -
+48:E1:5C:9D:C0:B1   -95    43.29     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -64    1.69      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -81    10.00     Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -60    1.11      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -80    9.01      Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -63    1.52      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -83    12.33     Apple TV       (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -60    1.11      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -81    10.00     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -83    12.33     Apple TV       (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -81    10.00     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -98    59.26     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+12:80:CB:FE:E7:26   -53    0.53      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -82    11.10     Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -83    12.33     Apple TV       (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -76    5.93      Apple TV       (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+67:9A:F8:E8:1C:07   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+06:54:91:21:5F:30   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -57    0.81      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        (none)                    Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -86    16.88     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        (none)                    Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -53    0.53      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -82    11.10     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -88    20.81     Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+C0:C1:B7:DD:CA:B0   -76    5.93      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -73    4.33      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+74:4D:BD:37:03:F2   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+CB:5D:0E:A7:0F:18   -83    12.33     Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -70    3.16      Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+C0:C1:B7:DD:CA:B0   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -52    0.48      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -89    23.10     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -88    20.81     Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -88    20.81     Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -91    28.48     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -91    28.48     Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -87    18.74     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -87    18.74     Unknown        28" Odyssey G7            Unknown          -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -87    18.74     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+48:E1:5C:9D:C0:B1   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -87    18.74     Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+48:E1:5C:9D:C0:B1   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -82    11.10     Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -82    11.10     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -86    16.88     Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -59    1.00      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -81    10.00     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -85    15.20     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        28" Odyssey G7            Unknown          -
+74:4D:BD:37:03:F2   -99    65.79     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -83    12.33     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -80    9.01      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -80    9.01      Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -57    0.81      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -84    13.69     Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -80    9.01      Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -83    12.33     Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -81    10.00     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -63    1.52      Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -63    1.52      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+49:E3:4F:32:C2:F9   -78    7.31      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -98    59.26     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+3E:65:84:E7:06:33   -79    8.11      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -83    12.33     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -63    1.52      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -51    0.43      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -71    3.51      Unknown        (none)                    Samsung          -
+11:13:29:92:29:37   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -63    1.52      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -63    1.52      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -81    10.00     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+74:4D:BD:37:03:F2   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -63    1.52      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -79    8.11      Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        RBSA1UPS874               Unknown          -
+48:E1:5C:9D:C0:B1   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+74:4D:BD:37:03:F2   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -83    12.33     Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -77    6.58      Unknown        (none)                    Samsung          -
+36:22:6B:94:EF:A4   -83    12.33     Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -64    1.69      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -87    18.74     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -86    16.88     Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -60    1.11      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -80    9.01      Unknown        (none)                    Unknown          -
+1D:44:F1:95:ED:D7   -80    9.01      Unknown        28" Odyssey G7            Unknown          -
+48:E1:5C:9D:C0:B1   -95    43.29     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -95    43.29     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -60    1.11      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -72    3.90      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -72    3.90      Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -89    23.10     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -95    43.29     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -85    15.20     Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -95    43.29     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -87    18.74     Unknown        (none)                    Unknown          -
+3E:65:84:E7:06:33   -74    4.81      Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+11:13:29:92:29:37   -95    43.29     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -81    10.00     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -57    0.81      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -83    12.33     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -80    9.01      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -57    0.81      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -81    10.00     Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -44    0.21      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -74    4.81      Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Unknown        28" Odyssey G7            Unknown          -
+74:4D:BD:37:03:F2   -95    43.29     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+CB:5D:0E:A7:0F:18   -82    11.10     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -84    13.69     Unknown        (none)                    Unknown          -
+67:9A:F8:E8:1C:07   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -82    11.10     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -76    5.93      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -59    1.00      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -82    11.10     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -80    9.01      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -60    1.11      Unknown        (none)                    Microsoft        -
+3E:65:84:E7:06:33   -73    4.33      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -62    1.37      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -89    23.10     Unknown        (none)                    Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -83    12.33     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -53    0.53      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -84    13.69     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -53    0.53      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -85    15.20     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -70    3.16      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -92    31.62     Unknown        RBSA1UPS874               Unknown          -
+48:E1:5C:9D:C0:B1   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -59    1.00      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+36:22:6B:94:EF:A4   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+48:E1:5C:9D:C0:B1   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -97    53.37     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -66    2.08      Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -84    13.69     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -81    10.00     Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -54    0.59      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+06:54:91:21:5F:30   -93    35.11     Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -83    12.33     Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+70:82:B9:03:51:50   -99    65.79     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -57    0.81      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -83    12.33     Unknown        (none)                    Unknown          -
+11:13:29:92:29:37   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+CB:5D:0E:A7:0F:18   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -53    0.53      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -80    9.01      Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -80    9.01      Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -77    6.58      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -80    9.01      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -59    1.00      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+06:54:91:21:5F:30   -82    11.10     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Unknown        RBSA1UPS874               Unknown          -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -80    9.01      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -64    1.69      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -81    10.00     Unknown        (none)                    Samsung          -
+36:22:6B:94:EF:A4   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -78    7.31      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -81    10.00     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -86    16.88     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+CB:5D:0E:A7:0F:18   -79    8.11      Apple TV       (none)                    Apple / Beats    -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        (none)                    Unknown          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -53    0.53      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -83    12.33     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -84    13.69     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -91    28.48     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -91    28.48     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -90    25.65     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -65    1.87      Unknown        (none)                    Samsung          -
+EE:6D:45:DB:35:01   -84    13.69     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -97    53.37     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -59    1.00      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -92    31.62     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -87    18.74     Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -84    13.69     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -59    1.00      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -89    23.10     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+EE:6D:45:DB:35:01   -84    13.69     Apple TV       (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+3E:65:84:E7:06:33   -81    10.00     Unknown        28" Odyssey G7            Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Unknown        RBSA1UPS874               Unknown          -
+C0:95:6D:6E:80:66   -99    65.79     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+EE:6D:45:DB:35:01   -84    13.69     Apple TV       (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -84    13.69     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -66    2.08      Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -89    23.10     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+CB:5D:0E:A7:0F:18   -85    15.20     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -60    1.11      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -83    12.33     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -83    12.33     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -77    6.58      Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+CB:5D:0E:A7:0F:18   -85    15.20     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -53    0.53      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -86    16.88     Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -83    12.33     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -86    16.88     Apple Device   (none)                    Apple / Beats    -
+36:22:6B:94:EF:A4   -81    10.00     Unknown        (none)                    Unknown          -
+EE:6D:45:DB:35:01   -86    16.88     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -87    18.74     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -60    1.11      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -87    18.74     Apple Device   (none)                    Apple / Beats    -
+1D:44:F1:95:ED:D7   -84    13.69     Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -85    15.20     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -86    16.88     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -56    0.73      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -70    3.16      Unknown        28" Odyssey G7            Unknown          -
+54:64:DE:0A:FB:10   -96    48.06     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -89    23.10     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -54    0.59      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -89    23.10     Unknown        (none)                    Unknown          -
+20:15:DE:36:31:27   -65    1.87      Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -89    23.10     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -89    23.10     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -86    16.88     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -63    1.52      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -89    23.10     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -89    23.10     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -83    12.33     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -79    8.11      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -86    16.88     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -86    16.88     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -64    1.69      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+06:54:91:21:5F:30   -85    15.20     Unknown        (none)                    Unknown          -
+36:22:6B:94:EF:A4   -85    15.20     Unknown        28" Odyssey G7            Unknown          -
+11:13:29:92:29:37   -85    15.20     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -84    13.69     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -69    2.85      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+C4:1A:C0:46:A7:69   -55    0.66      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -85    15.20     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -86    16.88     Unknown        28" Odyssey G7            Unknown          -
+1D:44:F1:95:ED:D7   -85    15.20     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+CB:5D:0E:A7:0F:18   -87    18.74     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -84    13.69     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -66    2.08      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -53    0.53      Unknown        (none)                    Microsoft        -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+1D:44:F1:95:ED:D7   -86    16.88     Unknown        28" Odyssey G7            Unknown          -
+67:9A:F8:E8:1C:07   -92    31.62     Unknown        RBSA1UPS874               Unknown          -
+C0:95:6D:6E:80:66   -99    65.79     Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -86    16.88     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -94    38.99     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -96    48.06     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -66    2.08      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+00:69:A3:ED:67:D2   -60    1.11      Unknown        (none)                    Microsoft        -
+67:9A:F8:E8:1C:07   -90    25.65     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -77    6.58      Unknown        28" Odyssey G7            Unknown          -
+36:22:6B:94:EF:A4   -86    16.88     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -80    9.01      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -86    16.88     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+[2J[HADDR                RSSI   DIST(m)   TYPE           NAME                     BRAND           MODEL
+-------------------------------------------------------------------------------------------
+20:15:DE:36:31:27   -63    1.52      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
+20:15:DE:36:31:27   -64    1.69      Unknown        28" Odyssey G7            Unknown          -
+06:54:91:21:5F:30   -88    20.81     Unknown        RBSA1UPS874               Unknown          -
+49:E3:4F:32:C2:F9   -78    7.31      Apple Device   (none)                    Apple / Beats    -
+EE:6D:45:DB:35:01   -85    15.20     Apple TV       (none)                    Apple / Beats    -
+67:9A:F8:E8:1C:07   -89    23.10     Apple Device   (none)                    Apple / Beats    -
+7D:24:4D:95:F2:79   -95    43.29     Apple Device   (none)                    Apple / Beats    -
+20:15:DE:36:31:27   -70    3.16      Unknown        (none)                    Samsung          -
