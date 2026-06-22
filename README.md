@@ -4,13 +4,6 @@ Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour f
 
 ---
 
-# 🚀 Altimètre Fusée — Raspberry Pi Pico
-
-Système d'enregistrement de données de vol embarqué pour micro-fusée, basé sur un Raspberry Pi Pico 1.  
-Enregistrement haute fréquence en binaire sur carte SD, avec suite d'outils d'analyse post-vol.
-
----
-
 ## Matériel
 
 | Composant | Rôle | Interface |
