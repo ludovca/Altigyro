@@ -120,57 +120,37 @@ python tools/convert.py VOL_001.bin
 ```
 time, accel_x, accel_y, accel_z, accel_R_x, accel_R_y, accel_R_z, pressure, temp_C
 ```
-
-Les cellules pression/temp sont vides sur les trames sans lecture BMP280.
-
 ---
 
-### `altitude.py` — Altitude en fonction du temps
+### `\traj` — Altitude en fonction du temps & Trajectoire 3D
 
-Trace le graphique altitude (m) vs temps (ms) à partir de la pression barométrique.
-
-```bash
-python tools/altitude.py VOL_001.csv
-```
+Trace le graphique altitude (m) vs temps (s) à partir de la pression barométrique ou du gyroscope.
 
 **Fonctionnalités :**
-- Interpolation des valeurs BMP280 manquantes (100 Hz → 200 Hz)
 - Calcul altitude via formule barométrique : `h = 44330 × (1 − (P/P0)^(1/5.255))`
 - Détection automatique du décollage, de l'apogée et de l'atterrissage
-- Affichage de la vitesse verticale (dérivée de l'altitude)
-- Export PNG du graphique
+- Marqueurs décollage / apogée / atterrissage
 
 ---
 
-### `trajectory3d.py` — Trajectoire 3D
 
 Reconstitue et trace la trajectoire spatiale de la fusée par intégration double de l'accélération.
 
-```bash
-python tools/trajectory3d.py VOL_001.csv
-```
-
 **Fonctionnalités :**
-- Soustraction de la gravité (calibration au sol sur les 200 premières trames)
+- Soustraction de la gravité (calibration au sol sur les 100 premières trames)
 - Intégration accélération → vitesse → position
 - Tracé 3D interactif (rotation, zoom)
-- Repère : X = Est, Y = Nord, Z = Altitude
 - Marqueurs décollage / apogée / atterrissage
 
 > **Note :** L'intégration double accumule de la dérive. Sans filtre de Kalman (prévu quand le MPU6050 sera calibré), la trajectoire 3D est indicative. L'altitude barométrique reste la référence fiable.
 
 ---
 
-### `orientation_viewer.py` — Visualiseur d'inclinaison (boîte noire)
+### `\orientation_viewer` — Visualiseur d'inclinaison (boîte noire)
 
 Rejoue l'orientation de la fusée frame par frame, comme une vidéo, à partir des données gyroscope.
 
-```bash
-python tools/orientation_viewer.py VOL_001.csv
-```
-
 **Fonctionnalités :**
-- Rendu 3D OpenGL d'un modèle fusée
 - Intégration du gyroscope (gx, gy, gz) pour reconstruire l'orientation
 - Contrôles :
   - `Espace` — lecture / pause
@@ -181,42 +161,6 @@ python tools/orientation_viewer.py VOL_001.csv
 - Indicateur d'inclinaison en degrés (roulis, tangage, lacet)
 
 > Utile pour analyser la stabilité de vol et détecter des rotations non souhaitées.
-
----
-
-## Structure du projet
-
-```
-fusee-altimetre/
-│
-├── altimetre.ino               ← Code Arduino (Pico)
-│
-├── tools/
-│   ├── convert.py              ← Binaire → CSV
-│   ├── altitude.py             ← Graphique altitude/temps
-│   ├── trajectory3d.py         ← Trajectoire 3D
-│   └── orientation_viewer.py   ← Visualiseur inclinaison
-│
-├── data/
-│   ├── VOL_001.bin             ← Données brutes (SD card)
-│   ├── VOL_001.csv             ← Données converties
-│   └── ...
-│
-└── README.md
-```
-
----
-
-## Workflow complet après un vol
-
-```
-1. Retirer la carte SD de la boîte noire
-2. Copier VOL_XXX.bin dans data/
-3. python tools/convert.py data/VOL_XXX.bin
-4. python tools/altitude.py data/VOL_XXX.csv
-5. python tools/trajectory3d.py data/VOL_XXX.csv
-6. python tools/orientation_viewer.py data/VOL_XXX.csv
-```
 
 ---
 
