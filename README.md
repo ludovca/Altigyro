@@ -92,18 +92,17 @@ Chaque vol génère un fichier `VOL_001.bin`, `VOL_002.bin`, etc. (incrémentati
 | temperature | float | 4 | °C (NaN si non relu) |
 
 **Fréquences d'enregistrement :**
-- MPU6050 : 200 Hz → toutes les lignes
-- BMP280 : 100 Hz → 1 ligne sur 2 (les autres ont `NaN`)
+- MPU6050 : 100 Hz
+- BMP280 : 100 Hz
 
 ---
 
 ## Suite logicielle post-vol
 
-Tous les scripts sont dans le dossier `tools/`.  
 Installer les dépendances une seule fois :
 
 ```bash
-pip install numpy pandas matplotlib scipy pyqt5 pyopengl
+pip install numpy pandas matplotlib
 ```
 
 ---
@@ -119,7 +118,7 @@ python tools/convert.py VOL_001.bin
 
 **Colonnes du CSV généré :**
 ```
-timestamp_ms, ax_g, ay_g, az_g, gx_dps, gy_dps, gz_dps, pression_hPa, temp_C
+time, accel_x, accel_y, accel_z, accel_R_x, accel_R_y, accel_R_z, pressure, temp_C
 ```
 
 Les cellules pression/temp sont vides sur les trames sans lecture BMP280.
