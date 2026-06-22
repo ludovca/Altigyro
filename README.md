@@ -1,6 +1,6 @@
 # 🚀 Altigyro : Ordinateur de Bord & Enregistreur pour Fusée Amateur
 
-Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour fusée amateur, développé en **C** pour le **Raspberry Pi Pico**, ainsi que les outils d'analyse de trajectoire 3D.
+Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour fusée amateur, ainsi que les outils d'analyse de trajectoire 3D.
 
 ---
 
@@ -8,7 +8,7 @@ Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour f
 
 | Composant | Rôle | Interface |
 |-----------|------|-----------|
-| Raspberry Pi Pico 1 | Microcontrôleur principal | — |
+| Raspberry Pi Pico 1| Microcontrôleur principal | — |
 | BMP280 | Pression / Température → Altitude | I2C (0x76) |
 | MPU6050 | Accéléromètre + Gyroscope 6 axes | I2C (0x68) |
 | Module carte SD | Stockage des données de vol | SPI |
