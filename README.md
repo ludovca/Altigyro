@@ -22,37 +22,26 @@ Ce dépôt contient le code source de l'ordinateur de bord (boîte noire) pour f
 
 | Capteur | Pin capteur | Pin Pico | N° pin |
 |---------|-------------|----------|--------|
-| BMP280 / MPU6050 | VCC | 3V3 | 36 |
-| BMP280 / MPU6050 | GND | GND | 38 |
-| BMP280 / MPU6050 | SDA | GP4 | 6 |
-| BMP280 / MPU6050 | SCL | GP5 | 7 |
-| BMP280 | CSB | 3V3 | — (force mode I2C) |
-| BMP280 | SDO | GND | — (adresse 0x76) |
+
 
 ### SPI — Module carte SD
 
 | Module SD | Pin Pico | N° pin |
 |-----------|----------|--------|
-| MISO | GP16 | 21 |
-| MOSI | GP19 | 25 |
-| SCK | GP18 | 24 |
-| CS | GP17 | 22 |
-| VCC | 3V3 | 36 |
-| GND | GND | 38 |
+
 
 ### GPIO
 
 | Composant | Pin Pico | N° pin |
 |-----------|----------|--------|
-| Buzzer (signal) | GP8 | 11 |
-| Buzzer (GND) | GND | 38 |
+
 
 ---
 
 ## Configuration (`altimetre.ino`)
 
 ```cpp
-#define FREQUENCE_HZ      200       // Fréquence boucle principale (MPU6050)
+#define FREQUENCE_HZ      100       // Fréquence boucle principale (MPU6050)
 #define BMP_DIVIDER       2         // BMP280 à 100 Hz (1 lecture / 2 boucles)
 #define BUFFER_RECORDS    40        // Flush SD toutes les 40 trames → 5x/sec
 #define PRESSION_MER      1013.25f  // hPa — à ajuster selon météo locale
