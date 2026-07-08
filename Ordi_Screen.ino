@@ -40,7 +40,6 @@ Adafruit_MPU6050 mpu;
 const unsigned long INTERVAL_MS     = 10;    // 100 Hz = 1 lecture toutes les 10ms
 const unsigned long DISPLAY_MS      = 200;   // écran rafraîchi à 5 Hz (lisible)
 const unsigned long PAGE_CHANGE_MS  = 2000;  // changement de page toutes les 2s
-const unsigned long BUFFER_LENGTH  = 40;     // Enregistrement de 40 mesures a la
 
 unsigned long lastSensor  = 0;
 unsigned long lastDisplay = 0;
@@ -55,7 +54,9 @@ float gx, gy, gz;
 
 queue_t data_transit;
 
-unsigned buffer = 0;
+const unsigned long INTERVAL_MS     = 10;    // 100 Hz = 1 lecture toutes les 10ms
+const unsigned long BUFFER_LENGTH  = 300;
+const unsigned long BUFFER_SAVE_LENGTH  = 40;
 
 File datasave;
 
@@ -218,6 +219,11 @@ void loop() {
 
 void setup1() {    // Ecriture (coeur 2)
   delay(12000);
+
+  SPI.setRX(16);   // MISO
+  SPI.setSCK(18);  // SCK
+  SPI.setTX(19);   // MOSI
+
   if (!SD.begin(CS_pin)){
     bip(1500);
     delay(1500);
@@ -246,7 +252,7 @@ void loop1() {
   datasave.println(data_recue.gz);
 
   buffer++;
-  if (buffer >= BUFFER_LENGTH){
+  if (buffer >= BUFFER_SAVE_LENGTH){
     buffer = 0;
     datasave.flush();
   }

@@ -1,14 +1,12 @@
 /*
-  Raspberry Pi Pico — BMP280 + MPU6050 + Buzzer + LCD SH1106
+  Raspberry Pi Pico — BMP280 + MPU6050 + Buzzer
   Bus I2C : SDA = GP0, SCL = GP1
-  Buzzer  : GP6
+  Buzzer  : GP8
   Vitesse de lecture : 100 Hz (toutes les 10ms)
   -------------------------------------------------------
   Bibliothèques nécessaires :
     - Adafruit BMP280 Library  (+ Adafruit Unified Sensor)
     - Adafruit MPU6050         (+ Adafruit Unified Sensor)
-    - Adafruit SH110X
-    - Adafruit GFX Library
 */
 
 #include <Wire.h>
@@ -30,13 +28,11 @@ Adafruit_MPU6050 mpu;
 
 // ---------- Timing ----------
 const unsigned long INTERVAL_MS     = 10;    // 100 Hz = 1 lecture toutes les 10ms
-const unsigned long BUFFER_LENGTH  = 40;     // Enregistrement de 40 mesures a la
+const unsigned long BUFFER_LENGTH  = 300;
+const unsigned long BUFFER_SAVE_LENGTH  = 40;
 
 unsigned long lastSensor  = 0;
-unsigned long lastDisplay = 0;
-unsigned long lastPage    = 0;
 
-// Dernières valeurs lues (partagées entre lecture et affichage)
 float temperature, pressure, altitude;
 float ax, ay, az;
 float gx, gy, gz;
@@ -129,6 +125,11 @@ void loop() {
 
 void setup1() {    // Ecriture (coeur 2)
   delay(9000);
+
+  SPI.setRX(16);   // MISO
+  SPI.setSCK(18);  // SCK
+  SPI.setTX(19);   // MOSI
+
   if (!SD.begin(CS_pin)){
     bip(1500);
     delay(1500);
@@ -157,7 +158,7 @@ void loop1() {
   datasave.println(data_recue.gz);
 
   buffer++;
-  if (buffer >= BUFFER_LENGTH){
+  if (buffer >= BUFFER_SAVE_LENGTH){
     buffer = 0;
     datasave.flush();
   }
